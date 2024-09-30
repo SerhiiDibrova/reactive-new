@@ -83,43 +83,18 @@ target 'YourApp' do
     'RCTImage',
     'RCTNetwork',
     'RCTText',
-    'RCTWebSocket',
-    'RCTAnimation',
-    'RCTLinking',
-    'RCTView',
-    'RCTScrollView',
-    'RCTModal',
-    'RCTPicker',
-    'RCTRefreshControl',
-    'RCTTextInput',
-    'RCTVirtualizedList',
-    'RCTViewPager',
-    'RCTImagePicker',
-    'RCTSafeAreaContext',
-    'RCTNewArchitecture', # Include this for Fabric
+    'RCTWebSocket', # Include this for Fabric
   ]
+  ...
 end
 ```
 
 ```json
 // package.json
 {
-  "name": "YourApp",
-  "version": "0.0.1",
-  "private": true,
   "dependencies": {
     "react": "18.0.0",
     "react-native": "0.75.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "babel-preset-react-native": "^5.0.0"
-  },
-  "scripts": {
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios"
   }
 }
 ```

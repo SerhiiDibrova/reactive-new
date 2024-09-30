@@ -51,16 +51,8 @@ import React
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    override func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        let rootView = RCTRootView(
-            bundleURL: Bundle.main.url(forResource: "main", withExtension: "jsbundle"),
-            moduleName: "YourApp",
-            initialProperties: nil,
-            launchOptions: launchOptions
-        )
+    override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let rootView = RCTRootView(bridge: self.bridge, moduleName: "YourApp", initialProperties: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = UIViewController()
         self.window?.rootViewController?.view = rootView
@@ -86,17 +78,11 @@ target 'YourApp' do
     'RCTWebSocket',
     'RCTAnimation',
     'RCTLinking',
+    'RCTModal',
     'RCTView',
     'RCTScrollView',
-    'RCTModal',
-    'RCTPicker',
-    'RCTRefreshControl',
     'RCTTextInput',
-    'RCTVirtualizedList',
-    'RCTViewPager',
-    'RCTImagePicker',
-    'RCTSafeAreaContext',
-    'RCTNewArchitecture', # Include this for Fabric
+    'RCTWebView',
   ]
 end
 ```
@@ -113,8 +99,7 @@ end
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "babel-preset-react-native": "^5.0.0"
+    "@babel/runtime": "^7.0.0"
   },
   "scripts": {
     "start": "react-native start",
