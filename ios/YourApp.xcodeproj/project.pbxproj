@@ -1,0 +1,122 @@
+package YourApp
+
+// Begin project.pbxproj content
+// !PBXProject
+{
+    archiveVersion = 1;
+    objectVersion = 46;
+    rootObject = 1D2A3B4C5D6E7F8G9H0I;
+}
+
+{
+    1D2A3B4C5D6E7F8G9H0I /* Project object */ = {
+        isa = PBXProject;
+        attributes = {
+            LastUpgradeCheck = 1300;
+            ORGANIZATIONNAME = "YourOrganization";
+            TargetAttributes = {
+                1D2A3B4C5D6E7F8G9H0I = {
+                    DevelopmentTeam = "YOUR_TEAM_ID";
+                    ProvisioningStyle = Automatic;
+                };
+            };
+        };
+        buildConfigurationList = 1A2B3C4D5E6F7G8H9I0J;
+        compatibilityVersion = "Xcode 13.0";
+        mainGroup = 1A2B3C4D5E6F7G8H9I0J;
+        productRefGroup = 1A2B3C4D5E6F7G8H9I0J;
+        targets = (
+            1D2A3B4C5D6E7F8G9H0I,
+        );
+    };
+}
+
+{
+    1A2B3C4D5E6F7G8H9I0J /* Build configuration list */ = {
+        isa = XCConfigurationList;
+        buildConfigurations = (
+            1A2B3C4D5E6F7G8H9I0J,
+            1A2B3C4D5E6F7G8H9I0K,
+        );
+        defaultConfigurationIsVisible = 0;
+        defaultConfigurationName = Release;
+    };
+}
+
+{
+    1A2B3C4D5E6F7G8H9I0J /* Debug */ = {
+        isa = XCBuildConfiguration;
+        baseConfigurationReference = 1A2B3C4D5E6F7G8H9I0L;
+        buildSettings = {
+            SWIFT_VERSION = 5.0;
+            ENABLE_BITCODE = YES;
+            USE_FRAMEWORKS = YES;
+            OTHER_CPLUSPLUSFLAGS = "-DUGOIRAVIEW";
+            OTHER_CFLAGS = "-DUGOIRAVIEW";
+            ENABLE_FABRIC = YES;
+            OTHER_SWIFT_FLAGS = "-DUGOIRAVIEW";
+        };
+        name = Debug;
+    };
+}
+
+{
+    1A2B3C4D5E6F7G8H9I0K /* Release */ = {
+        isa = XCBuildConfiguration;
+        baseConfigurationReference = 1A2B3C4D5E6F7G8H9I0L;
+        buildSettings = {
+            SWIFT_VERSION = 5.0;
+            ENABLE_BITCODE = YES;
+            USE_FRAMEWORKS = YES;
+            OTHER_CPLUSPLUSFLAGS = "-DUGOIRAVIEW";
+            OTHER_CFLAGS = "-DUGOIRAVIEW";
+            ENABLE_FABRIC = YES;
+            OTHER_SWIFT_FLAGS = "-DUGOIRAVIEW";
+        };
+        name = Release;
+    };
+}
+
+{
+    1A2B3C4D5E6F7G8H9I0L /* Debug.xcconfig */ = { 
+        isa = XCConfigurationFile;
+        fileEncoding = 4;
+        lastSaved = 1A2B3C4D5E6F7G8H9I0M;
+        name = "Debug.xcconfig";
+        path = "Debug.xcconfig";
+    };
+}
+
+{
+    1A2B3C4D5E6F7G8H9I0M /* Release.xcconfig */ = { 
+        isa = XCConfigurationFile;
+        fileEncoding = 4;
+        lastSaved = 1A2B3C4D5E6F7G8H9I0N;
+        name = "Release.xcconfig";
+        path = "Release.xcconfig";
+    };
+}
+
+{
+    1D2A3B4C5D6E7F8G9H0I /* YourApp */ = {
+        isa = PBXNativeTarget;
+        buildConfigurationList = 1A2B3C4D5E6F7G8H9I0J;
+        dependencies = (
+        );
+        name = "YourApp";
+        productName = "YourApp";
+        productReference = 1D2A3B4C5D6E7F8G9H0I;
+        productType = "com.apple.product-type.application";
+    };
+}
+
+{
+    1D2A3B4C5D6E7F8G9H0I /* YourApp */ = {
+        isa = PBXFileReference;
+        lastKnownFileType = "wrapper.application";
+        path = "YourApp.app";
+        sourceTree = "<group>";
+    };
+}
+
+// End project.pbxproj content

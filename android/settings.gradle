@@ -1,0 +1,21 @@
+package android;
+
+include ':app'
+include ':fabric'
+
+project(':fabric').projectDir = new File(rootProject.projectDir, '../fabric')
+
+android {
+    fabric {
+        enable = true
+    }
+}
+
+def setWidth(width) {
+    if (width > 0) {
+        // Logic to set width in the Fabric architecture
+        // This is a placeholder for actual implementation
+    } else {
+        throw new IllegalArgumentException("Width must be greater than 0")
+    }
+}

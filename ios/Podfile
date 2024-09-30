@@ -1,0 +1,35 @@
+package Podfile
+
+platform :ios, '10.0'
+
+target 'YourApp' do
+  use_frameworks!
+
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'CxxBridge',
+    'DevSupport',
+    'RCTImage',
+    'RCTNetwork',
+    'RCTText',
+    'RCTWebView',
+  ]
+
+  pod 'ReactNativeAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
+  pod 'resumeAnimation', :path => '../node_modules/react-native/Libraries/ResumeAnimation'
+
+  pod 'React', :modular_headers => true
+  pod 'React-Core', :path => '../node_modules/react-native/React'
+  pod 'React-DevSupport', :path => '../node_modules/react-native/React'
+  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+  end
+end
