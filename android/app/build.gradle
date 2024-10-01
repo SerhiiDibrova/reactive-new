@@ -1,38 +1,35 @@
+package android.app;
+
 apply plugin: "com.android.application"
-apply plugin: "com.facebook.react"
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.yourproject" // Замініть на ваше ім'я пакету
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        applicationId "com.example.app"
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
-        ndkVersion rootProject.ext.ndkVersion
+        buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "true"
     }
 
     buildTypes {
         release {
-            // Увімкніть обфускацію (мінімізацію коду) для рилізних збірок
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
-
-    packagingOptions {
-        pickFirst '**/libc++_shared.so'
-        pickFirst '**/libjsc.so'
-    }
 }
 
 dependencies {
-    implementation "com.facebook.react:react-native:+"  // Вкажіть версію RN
-    // Додайте інші залежності вашого проекту тут
-}
-
-// Включення нової архітектури Fabric та TurboModules
-react {
-    enableNewArchitecture = true // Увімкніть нову архітектуру
+    implementation 'com.squareup.leakcanary:leakcanary-android:1.5'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.5'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.facebook.fresco:webpsupport:2.0.0'
+    debugImplementation 'com.facebook.flipper:flipper:0.93.0'
+    debugImplementation 'com.facebook.flipper:flipper-network-plugin:0.93.0'
+    debugImplementation 'com.facebook.flipper:flipper-fresco-plugin:0.93.0'
 }
