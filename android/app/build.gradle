@@ -1,38 +1,47 @@
-apply plugin: "com.android.application"
-apply plugin: "com.facebook.react"
+package android.app
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 31
 
     defaultConfig {
-        applicationId "com.yourproject" // Замініть на ваше ім'я пакету
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        applicationId "com.example.app"
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-        ndkVersion rootProject.ext.ndkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            // Увімкніть обфускацію (мінімізацію коду) для рилізних збірок
             minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
-    packagingOptions {
-        pickFirst '**/libc++_shared.so'
-        pickFirst '**/libjsc.so'
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
-    implementation "com.facebook.react:react-native:+"  // Вкажіть версію RN
-    // Додайте інші залежності вашого проекту тут
+    implementation 'com.facebook.react:react-native:0.66.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.31"
 }
 
-// Включення нової архітектури Fabric та TurboModules
-react {
-    enableNewArchitecture = true // Увімкніть нову архітектуру
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task setWidth {
+    doLast {
+        def widthValue = 100 // Example width value
+        // Logic for setting width
+        project.ext.set("width", widthValue)
+        println("Setting width to ${project.ext.get("width")}")
+    }
 }

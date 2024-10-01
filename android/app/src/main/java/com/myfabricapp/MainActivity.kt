@@ -1,32 +1,28 @@
 package com.myfabricapp
 
+import android.os.Bundle
 import com.facebook.react.ReactActivity
-import com.facebook.react.ReactActivityDelegate
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
-import com.facebook.react.defaults.DefaultReactActivityDelegate
+import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactInstanceManager
+import com.facebook.react.ReactApplication
+import com.facebook.react.ReactNativeConfig
+import com.myfabricapp.BuildConfig
 
 class MainActivity : ReactActivity() {
+    override fun getMainComponentName(): String {
+        return "MyFabricApp"
+    }
 
-  /**
-   * Returns the name of the main component registered from JavaScript. This is used to schedule
-   * rendering of the component.
-   */
-  override fun getMainComponentName(): String = "MyFabricApp"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableNewArchitecture()
+    }
 
-  /**
-   * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
-   * which allows you to enable New Architecture with a single boolean flags [fabricEnabled]
-   */
-  override fun createReactActivityDelegate(): ReactActivityDelegate =
-      DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
-
- @Override
- protected ReactActivityDelegate createReactActivityDelegate() {
-    return new DefaultReactActivityDelegate(
-        this,
-        getMainComponentName(),
-        DefaultNewArchitectureEntryPoint.getFabricEnabled() // Увімкнення Fabric
-    );
-}
+    private fun enableNewArchitecture() {
+        if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+            (application as ReactApplication).reactNativeHost.apply {
+                ReactNativeConfig.setNewArchitectureEnabled(true)
+            }
+        }
+    }
 }

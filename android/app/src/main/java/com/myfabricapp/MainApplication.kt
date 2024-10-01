@@ -1,58 +1,43 @@
 package com.myfabricapp
-import android.app.Application;
-import com.facebook.react.PackageList;
-import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
-import com.facebook.react.defaults.DefaultReactNativeHost;
-import com.facebook.soloader.SoLoader;
-import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
-    private final ReactNativeHost mReactNativeHost =
-            new DefaultReactNativeHost(this) {
-                @Override
-                public boolean getUseDeveloperSupport() {
-                    return BuildConfig.DEBUG;
-                }
+import android.app.Application
+import com.facebook.react.ReactApplication
+import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactPackage
+import com.facebook.soloader.SoLoader
+import com.facebook.react.bridge.ReactContext
+import com.facebook.react.bridge.ReactApplicationContext
 
-                @Override
-                protected List<ReactPackage> getPackages() {
-                    @SuppressWarnings("UnnecessaryLocalVariable")
-                    List<ReactPackage> packages = new PackageList(this).getPackages();
-                    // Додайте ваші пакети сюди, якщо є
-                    return packages;
-                }
+class MainApplication : Application(), ReactApplication {
 
-                @Override
-                protected String getJSMainModuleName() {
-                    return "index";
-                }
+    private val mReactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
+        override fun getUseDeveloperSupport(): Boolean {
+            return BuildConfig.DEBUG
+        }
 
-                @Override
-                protected boolean isNewArchEnabled() {
-                    return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
-                }
+        override fun getPackages(): List<ReactPackage> {
+            return try {
+                listOf(UgoiraViewManager())
+            } catch (e: Exception) {
+                emptyList()
+            }
+        }
 
-                @Override
-                protected boolean isHermesEnabled() {
-                    return BuildConfig.IS_HERMES_ENABLED;
-                }
-            };
-
-    @Override
-    public ReactNativeHost getReactNativeHost() {
-        return mReactNativeHost;
+        override fun getJSMainModuleName(): String {
+            return "index"
+        }
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        SoLoader.init(this, /* native exopackage */ false);
-        if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
-            DefaultNewArchitectureEntryPoint.load();
+    override fun getReactNativeHost(): ReactNativeHost {
+        return mReactNativeHost
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        SoLoader.init(this, /* native exopackage */ false)
+        if (BuildConfig.FABRIC_ENABLED) {
+            // Ensure Fabric architecture is set up
+            // Additional setup for Fabric if needed
         }
-        ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     }
 }
