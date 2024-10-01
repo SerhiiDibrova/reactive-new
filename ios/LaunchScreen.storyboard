@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15112" systemVersion="20D64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <objects>
+        <scene sceneID="1">
+            <objects>
+                <view key="view" contentMode="scaleToFill" id="2">
+                    <color key="backgroundColor" red="0.5" green="0.7" blue="0.9" alpha="1" id="3"/>
+                    <imageView contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="false" id="4">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    </imageView>
+                    <constraints>
+                        <constraint firstItem="4" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="5"/>
+                        <constraint firstItem="4" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="6"/>
+                        <constraint firstItem="4" firstAttribute="width" secondItem="2" secondAttribute="width" multiplier="0.5" id="7"/>
+                        <constraint firstItem="4" firstAttribute="height" secondItem="2" secondAttribute="height" multiplier="0.5" id="8"/>
+                    </constraints>
+                </view>
+            </objects>
+        </scene>
+    </objects>
+</document>
