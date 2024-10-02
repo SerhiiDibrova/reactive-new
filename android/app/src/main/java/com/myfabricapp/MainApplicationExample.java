@@ -1,4 +1,5 @@
-package com.myfabricapp
+package com.myfabricapp;
+
 import android.app.Application;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -10,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.List;
 
 public class MainApplicationExample extends Application implements ReactApplication {
+
     private final ReactNativeHost mReactNativeHost =
             new DefaultReactNativeHost(this) {
                 @Override
@@ -30,10 +32,10 @@ public class MainApplicationExample extends Application implements ReactApplicat
                     return "index";
                 }
 
-                @Override
-                protected boolean isNewArchEnabled() {
-                    return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
-                }
+                //@Override
+                //protected boolean isNewArchEnabled() {
+                //    return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
+                //}
 
                 @Override
                 protected boolean isHermesEnabled() {
@@ -50,9 +52,9 @@ public class MainApplicationExample extends Application implements ReactApplicat
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
-        if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
-            DefaultNewArchitectureEntryPoint.load();
-        }
+        //if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+        //    DefaultNewArchitectureEntryPoint.load();
+        //}
         ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     }
 }
