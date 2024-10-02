@@ -1,38 +1,40 @@
-apply plugin: "com.android.application"
-apply plugin: "com.facebook.react"
+package android.app.build.gradle
+
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-
+    compileSdkVersion 33
     defaultConfig {
-        applicationId "com.yourproject" // Замініть на ваше ім'я пакету
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        applicationId "com.example.app"
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
-        ndkVersion rootProject.ext.ndkVersion
     }
-
+    buildFeatures {
+        fabric = true
+    }
     buildTypes {
         release {
-            // Увімкніть обфускацію (мінімізацію коду) для рилізних збірок
             minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-
-    packagingOptions {
-        pickFirst '**/libc++_shared.so'
-        pickFirst '**/libjsc.so'
     }
 }
 
 dependencies {
-    implementation "com.facebook.react:react-native:+"  // Вкажіть версію RN
-    // Додайте інші залежності вашого проекту тут
+    implementation 'com.facebook.react:react-native:0.75.0'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 }
 
-// Включення нової архітектури Fabric та TurboModules
-react {
-    enableNewArchitecture = true // Увімкніть нову архітектуру
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
 }
