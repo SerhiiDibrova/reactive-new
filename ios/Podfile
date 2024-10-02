@@ -1,38 +1,51 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+package Podfile
 
 platform :ios, '10.0'
 
-target 'PxViewR' do
-  config = use_native_modules!
+target 'YourApp' do
+  use_frameworks!
 
-  use_react_native!(:path => config["reactNativePath"])
+  # React Native dependencies
+  pod 'React', :path => '../node_modules/react-native'
+  pod 'React-Core', :path => '../node_modules/react-native/React'
+  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+  pod 'React-RCTWebSocket', :path => '../node_modules/react-native/Libraries/WebSocket'
+  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
 
-  target 'PxViewRTests' do
-    inherit! :complete
-    # Pods for testing
-  end
+  # Additional dependencies
+  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  # Enables Flipper.
-  #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
-  # you should disable these next few lines.
-  use_flipper!({ 'Flipper' => '0.87.0' })
-  post_install do |installer|
-    flipper_post_install(installer)
+  # Add any other libraries you need here
+end
 
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
-      end
-     end
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
   end
 end
 
-target 'PxViewR-tvOS' do
-  # Pods for RnDiffApp-tvOS
-  target 'PxViewR-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
+def setPaused(isPaused)
+  begin
+    if isPaused
+      UIView.animate(withDuration: 0.3) {
+        // Code to pause animations smoothly
+      }
+    else
+      UIView.animate(withDuration: 0.3) {
+        // Code to resume animations smoothly
+      }
+    end
+  rescue AnimationPauseError => e
+    // Handle animation pause error gracefully
+  rescue AnimationResumeError => e
+    // Handle animation resume error gracefully
+  rescue => e
+    // Handle generic errors gracefully
   end
 end
