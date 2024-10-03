@@ -1,38 +1,8 @@
-apply plugin: "com.android.application"
-apply plugin: "com.facebook.react"
+package android.app;
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-
-    defaultConfig {
-        applicationId "com.yourproject" // Замініть на ваше ім'я пакету
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        ndkVersion rootProject.ext.ndkVersion
-    }
-
-    buildTypes {
-        release {
-            // Увімкніть обфускацію (мінімізацію коду) для рилізних збірок
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-        }
-    }
-
-    packagingOptions {
-        pickFirst '**/libc++_shared.so'
-        pickFirst '**/libjsc.so'
-    }
-}
-
-dependencies {
-    implementation "com.facebook.react:react-native:+"  // Вкажіть версію RN
-    // Додайте інші залежності вашого проекту тут
-}
-
-// Включення нової архітектури Fabric та TurboModules
-react {
-    enableNewArchitecture = true // Увімкніть нову архітектуру
+    project.ext.react = [
+        enableHermes: true,
+        fabric: true
+    ]
 }
