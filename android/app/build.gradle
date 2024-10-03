@@ -1,38 +1,30 @@
-apply plugin: "com.android.application"
-apply plugin: "com.facebook.react"
+package com.yourapp;
+
+apply from: project(':react-native-dotenv').projectDir.getPath() + "/dotenv.gradle"
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    ...
+}
 
-    defaultConfig {
-        applicationId "com.yourproject" // Замініть на ваше ім'я пакету
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        ndkVersion rootProject.ext.ndkVersion
-    }
-
-    buildTypes {
-        release {
-            // Увімкніть обфускацію (мінімізацію коду) для рилізних збірок
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-        }
-    }
-
-    packagingOptions {
-        pickFirst '**/libc++_shared.so'
-        pickFirst '**/libjsc.so'
-    }
+react {
+    fabric: true
 }
 
 dependencies {
-    implementation "com.facebook.react:react-native:+"  // Вкажіть версію RN
-    // Додайте інші залежності вашого проекту тут
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.12.0'
 }
 
-// Включення нової архітектури Fabric та TurboModules
-react {
-    enableNewArchitecture = true // Увімкніть нову архітектуру
+def getGifList() {
+    def apiKey = System.getenv("GIPHY_API_KEY")
+    if (apiKey == null || apiKey.isEmpty()) {
+        throw new IllegalArgumentException("GIPHY_API_KEY environment variable is not set.")
+    }
+    def url = "https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=10"
+    def process = "curl -X GET ${url}".execute()
+    process.waitFor()
+    if (process.exitValue() != 0) {
+        throw new RuntimeException("Error fetching GIFs: ${process.err.text}")
+    }
+    return process.text
 }

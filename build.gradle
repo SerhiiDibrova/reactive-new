@@ -1,0 +1,6 @@
+package com.example.project
+
+project.ext.react = [
+    enableHermes: true,
+    fabric: true
+]
